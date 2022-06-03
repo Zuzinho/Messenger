@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище DatabaseModelContainer" CdmEntityContainer="DatabaseEntities">
+    <EntitySetMapping Name="Room">
+      <EntityTypeMapping TypeName="DatabaseModel.Room">
+        <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="User2" ColumnName="User2" />
+          <ScalarProperty Name="User1" ColumnName="User1" />
+          <ScalarProperty Name="User2_id" ColumnName="User2_id" />
+          <ScalarProperty Name="User1_id" ColumnName="User1_id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="DatabaseModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="RoomNumbers" ColumnName="RoomNumbers" />
+          <ScalarProperty Name="avatar" ColumnName="avatar" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoomContent">
+      <EntityTypeMapping TypeName="DatabaseModel.RoomContent">
+        <MappingFragment StoreEntitySet="RoomContent">
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

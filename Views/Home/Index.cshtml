@@ -1,0 +1,87 @@
+﻿@using Messanger.Models;
+@model ValueTuple<List<Room>,int,List<User>,List<Message>>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Messanger</title>
+    <link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
+    <link rel="stylesheet" href="/Content/css/style.css" />
+    <meta charset="utf-8">
+
+</head>
+<body>
+    <div class="container">
+        <h3 class=" text-center">Messaging</h3>
+        <div class="messaging">
+            <div class="inbox_msg">
+                <div class="inbox_people">
+                    <div class="headind_srch">
+                        <div class="recent_heading">
+                            <h4>Recent</h4>
+                        </div>
+                        <div class="srch_bar">
+                            <div class="stylish-input-group">
+                                <input type="text" class="search-bar" placeholder="Search">
+                                <span class="input-group-addon">
+                                    <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inbox_chat">
+                        @for (int i=0;i<Model.Item1.Count;i++) {
+                            string Class="";
+                            Room room = Model.Item1[i];
+                            var TakenUser = Model.Item3[i];
+                            var lastMsg = Model.Item4[i];
+                            <a href="@Url.Action("Index","Home",new {current_page = room.Id})">
+                                @if (Model.Item2 == room.Id) {
+                                   Class = "active_chat";
+                                }
+
+                                <div class="chat_list @Class">
+                                    <div class="chat_people">
+                                        <div class="chat_img"> <img src="@TakenUser.avatar" alt=""> </div>
+                                        <div class="chat_ib">
+                                            <h5>@TakenUser.Name 
+                                                <span class="chat_date">
+                                                    @if (lastMsg != null)
+                                                    {
+                                                        @Dates.GetMMDD(lastMsg.time)
+                                                    }
+                                                </span>
+                                            </h5>
+                                            <p class="lastMsg">
+                                                @if (lastMsg != null)
+                                                {
+                                                    if (lastMsg.userSend == TakenUser.Id)
+                                                    {
+                        <span class="nameSend">@TakenUser.Name: </span>
+                                                    }
+                    else
+                    {
+                        <span class="nameSend">You: </span>
+                    }
+                                            <span class="lastMsgText">@Model.Item4[i].text</span>
+                                                }
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                </div>
+                @Html.Action("RoomPage","Home",new {room_id = Model.Item2})
+            </div>
+        </div>
+        <a href="@Url.Action("Connect","Home")">Connect</a>
+    </div>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="~/Content/js/ChangeLastMessage.js"></script>
+    <script src="~/Content/js/GetMMDD.js"></script>
+    <script src="~/Content/js/GetHHMM.js"></script>
+</body>
+</html>

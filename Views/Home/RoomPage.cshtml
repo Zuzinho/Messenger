@@ -1,0 +1,51 @@
+﻿@using Messanger.Models;
+@model ValueTuple<int, List<Message>, User>
+@{
+    Layout = "";
+}
+
+<div class="mesgs">
+    <div class="msg_history">
+        @foreach (var message in Model.Item2)
+                    {
+                        if (message.userSend == Model.Item1)
+                        {
+                <div class="outgoing_msg">
+                    <div class="sent_msg">
+                        <div class="sent_msg_text">@message.text</div>
+                        <span class="time_date">@Dates.GetFullDate(message.time)</span>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="incoming_msg">
+                    <div class="incoming_msg_img"> <img src="@Model.Item3.avatar" alt=""> </div>
+                    <div class="received_msg">
+                        <div class="received_withd_msg">
+                            <div class="gotten_msg_text">
+                                @message.text
+                            </div>
+                            <span class="time_date">@Dates.GetFullDate(message.time)</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="type_msg">
+        <form id="sendMessageForm" method="post">
+            <div class="input_msg_write">
+                <input name="message" type="text" class="write_msg" placeholder="Type a message" />
+                <button class="msg_send_btn" type="submit"></button>
+            </div>
+        </form>
+    </div>
+</div>
+<div>@Model.Item1</div>
+<script src="~/Content/js/scroll.js"></script>
+<script src="~/Content/js/PreventSubmit.js"></script>
+<script src="~/Content/js/ClearInput.js"></script>
+<script src="~/Content/js/AddMessage.js"></script>
+<script src="~/Content/js/CreateChild.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
