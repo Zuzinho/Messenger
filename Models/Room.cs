@@ -15,9 +15,9 @@ namespace Messanger.Models
     
     public partial class Room
     {
-        public int Id { get; set; }
-        public Nullable<int> user1_id { get; set; }
-        public Nullable<int> user2_id { get; set; }
+        public int Id { get; private set; }
+        public Nullable<int> user1_id { get; private set; }
+        public Nullable<int> user2_id { get; private set; }
 
         public static List<Room> GetRooms(string roomNumbers,DatabaseEntities1 db)
         {
