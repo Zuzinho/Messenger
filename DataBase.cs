@@ -85,6 +85,7 @@ namespace Messanger
             SqlCommand command = new SqlCommand(sql, con);
             command.ExecuteNonQuery();
             con.Close();
+
         }
     }
 }
