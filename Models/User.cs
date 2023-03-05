@@ -14,9 +14,9 @@ namespace Messanger.Models
     
     public partial class User
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string avatar { get; set; }
-        public string RoomNumbers { get; set; }
+        public int Id { get; private set; }
+        public string Name { get; private set; }
+        public string avatar { get; private set; }
+        public string RoomNumbers { get; private set; }
     }
 }
