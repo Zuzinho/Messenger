@@ -23,11 +23,13 @@ namespace Messanger.Models
         {
             var numbersStr = roomNumbers.Split(',');
             List<Room> rooms = new List<Room>();
+            
             foreach(string number in numbersStr)
             {
                 int room_id = Convert.ToInt32(number);
                 rooms.Add(db.Room.FirstOrDefault(x=>x.Id == room_id));
             }
+
             return rooms;
         }
     }
